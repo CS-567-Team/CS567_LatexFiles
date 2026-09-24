@@ -1,0 +1,133 @@
+\documentclass{chi-ext}
+
+\title{Layered Agentic AI Workflows for Human-Centric Software Development}
+
+\numberofauthors{2}
+\author{
+  \alignauthor{
+      \textbf{Christopher Mills}\\
+      \affaddr{Department of Computer Science}\\
+      \affaddr{Colorado State University}\\
+      \affaddr{Fort Collins, CO, USA}\\
+      \email{christopher.mills@colostate.edu}
+  }\alignauthor{
+      \textbf{Amber Ferrell}\\
+      \affaddr{Department of Computer Science}\\
+      \affaddr{Colorado State University}\\
+      \affaddr{Fort Collins, CO, USA}\\
+      \email{amber.ferrell@colostate.edu}
+  }
+}
+
+\def\plaintitle{Layered Agentic AI Workflows for Human-Centric Software Development}
+\def\plainauthor{Christopher Mills, Amber Ferrell}
+\def\plainkeywords{Agentic AI; Human-Centric; Multi-layer; AI workflow; Code Generation; WebXR; Spatial AI}
+\def\plaingeneralterms{Software Engineering, Human-Computer Interaction}
+
+\hypersetup{
+  pdftitle={\plaintitle},
+  pdfauthor={\plainauthor},  
+  pdfkeywords={\plainkeywords},
+  pdfsubject={\plaingeneralterms},
+}
+
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage{bibspacing}
+
+\copyrightinfo{
+  CS 567: 3D User Interfaces and Human Centered Spatial AI. \\
+  Fall 2026 Class Project Proposal. \\
+  Colorado State University. \\
+  Not for official ACM publication.
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Agentic AI has become a major part of everyday software engineering, and human developers must remain at the center of control for these systems. It is unclear how using agentic systems affects software correctness and a human's ability to supervise them. We will build a human-centric coding assistant visualized through a 3D spatial interface to compare multiple agentic workflows and a developer's understanding, confidence, workload, and decision-making process. The results will show whether additional agent layers meaningfully improve software quality and human oversight or introduce unnecessary complexity when navigating agent feedback spatially.
+\end{abstract}
+
+\keywords{\plainkeywords}
+
+\category{H.5.m}{Information interfaces and presentation (e.g., HCI)}{Miscellaneous}. 
+See: \url{http://www.acm.org/about/class/1998/} 
+for help using the ACM Classification system.
+
+% =============================================================================
+\section{Introduction and Motivation}
+% =============================================================================
+The way software is developed has changed rapidly in the past few years, starting with AI chatbots that evaluated and generated small segments of code at a time. Today, we see more advanced AI use through agentic systems that can go through entire repositories, edit files, and collaborate to generate software solutions. It is very important that human developers stay in control by understanding, evaluating, and deciding which AI-generated changes to implement into their systems.
+
+AI is a powerful tool that can generate solutions much faster than humans generally can. However, AI-generated solutions are not always correct, understandable, or trustworthy. With the introduction of agentic systems, we now see a wide range of specialized agents that can be assigned to roles and perform different tasks. Multiple of these specialized agents can even work together to create structured workflows. These agentic architectures introduce new trade-offs for human interaction.
+
+A single agent may quickly generate a solution for a developer while keeping the interaction relatively simple, but it may offer limited insight for users to evaluate if a solution is correct or trustworthy. Multi-layered agentic systems offer users additional information before the final result reaches them, potentially improving understanding, trust, and decision-making. However, too many or unnecessary layers can make the system hard to understand, generate unnecessary information, or create a false sense of security that a solution is correct when agents agree. 
+
+It is unclear whether these different workflows can meaningfully improve both software and a human developer's ability to supervise AI-generated changes. These problems lead us to our question. How do layered agentic workflow structures affect software correctness, and a human developer's ability to understand, evaluate, and trust AI-generated changes?
+
+% =============================================================================
+\section{Related Work}
+% =============================================================================
+
+\subsection{Multi-Agent Frameworks}
+Recent work has demonstrated how multi-agent structures perform using specialized LLM agents for software development. MetaGPT assigns specific roles and skills into Standard Operating Procedures to establish basic workflows~\cite{hong2024metagpt}. Similarly, AgentCoder experimented with the effectiveness of adding specialized test design and test execution agents to generate test cases and provide feedback for refinement~\cite{huang2023agentcoder}. ChatDev further demonstrates this by assigning specialized agents to different stages of development and allowing them to collaborate through structured communication~\cite{qian2024chatdev}. Together, these systems suggest that specialized roles and multi-layered architectures can structure tasks and produce better outputs, rather than relying on a single agent to do all of the work.
+
+\subsection{AI and Human-Centric Approaches}
+While multi-agent systems can improve task organization, added complexity can make their behavior harder for humans to understand. DiLLS addresses this by organizing agent behavior into layered summaries that help developers diagnose failures without relying on raw logs alone~\cite{sheng2026dills}. Dibia et al. compare automated code-generation metrics with human judgments and find that system-level performance does not always align with what developers consider valuable~\cite{dibia2023aligning}. These studies show that AI coding systems should be evaluated by technical performance and by how well humans can understand and assess their outputs.
+
+\subsection{Broader Multi-Agent Systems and User Trust}
+Beyond dedicated software development pipelines, recent multi-agent conversational frameworks like AutoGen demonstrate how flexible agent roles can solve complex tasks~\cite{wu2023autogen, xi2023rise}. Broader surveys on autonomous agents and code generation highlight the rapid expansion of LLMs in software engineering workflows~\cite{wang2023survey, hou2023large, zan2023large, jiang2023survey}. However, deploying these systems requires careful consideration of human oversight and reliance. Prior work in human-computer interaction emphasizes that increasing automation can lead to over-reliance or difficulties in calibration if users cannot transparently inspect agent reasoning~\cite{vaithilingam2022expectation, mozannar2022reading, bucinca2021trust}. While foundational architectures like Generative Agents simulate complex interactions~\cite{park2023generative} and early evaluations benchmark raw code generation capabilities~\cite{chen2021evaluating, bubeck2023sparks, zhang2023self}, our work specifically isolates the sequential addition of planning and review layers to measure their direct impact on developer workload, trust, and decision-making.
+
+\subsection{3D Spatial Interfaces and Human Experience}
+Research on 3D interfaces has established spatial organization as an important consideration when designing how users navigate and interact with information~\cite{bowman20043d}. Studies of immersive environments have shown that the layout and arrangement of information can influence spatial memory, usability, and navigation~\cite{liu2022effects, brett2025spatially}. These findings are relevant to our study because layered agentic workflows can produce several sources of information, including plans, code diffs, and reviewer feedback for a user to digest. Rather than presenting all of this information in across a 2D interface, we use a 3D spatial environment to separate agent roles and outputs into distinct locations that users can inspect as the workflow progresses. While prior research suggests that adding a third dimension does not inherently improve spatial memory~\cite{cockburn2004evaluating}, our interface uses spatial organization to structure agent information while participants understand and supervise the agentic workflow.
+
+\subsection{Distinguishing Our Approach}
+While existing multi-agent frameworks prioritize system-level technical performance and autonomous task completion~\cite{hong2024metagpt, qian2024chatdev, huang2023agentcoder}, our approach fundamentally shifts the focus to human-centric oversight. Previous human-computer interaction research highlights that increased automation can inadvertently foster over-reliance and automation bias, where users may blindly trust AI outputs simply because a complex system presents a consensus~\cite{bucinca2021trust, mozannar2022reading, vaithilingam2022expectation}. To address this gap, we isolate the agentic layers as independent variables. Rather than comparing entirely disparate tools, our study rigidly controls the underlying model, task environment, and user interface while sequentially introducing planning and review agents. By evaluating not just code correctness, but developer comprehension, cognitive load, and decision-making accuracy, our work uniquely measures whether additional agent layers genuinely enhance a human developer's supervisory capacity or merely induce a false sense of security.
+
+% =============================================================================
+\section{Approach}
+% =============================================================================
+We will compare three structured agentic AI workflows where users will make feature changes to an existing baseline application. Developers will receive detailed feature requirements of varying difficulty, then use each agentic workflow to generate their own prompts as input. Once the agent or agents have generated a solution, the user will be able to interact and make decisions about what to do with the code. 
+
+The first workflow case will consist of a single programmer agent. The user will prompt the programmer agent to write code and then review the changes the agent made. Next, they will either accept, reject, or request additional changes. The user may request additional changes only once after reviewing the code. After that, the user must either accept or reject the final changes. 
+
+The second case uses both a programming agent and a reviewing agent. Similar to the first case, the user prompts the system, and the programmer generates code. The reviewing agent then reviews the changes and either provides detailed feedback to the programmer agent to improve the code based on its own requirements or passes it on for human review. After reviewing the new code and the review agent's feedback, the user can then accept, reject, or request additional changes. 
+
+Finally, the last case implements a planner agent before the programming agent begins writing code. In the final sequence, a human prompts the system, a planner divides tasks into a structured plan, the programmer generates code for each plan, the reviewer provides feedback, and the human user decides what to do with the changes.
+
+Our experiment aims to combine elements of previous agentic systems through a layered, sequential workflow, specialized agents, and a focus on human interaction and experience. Unlike prior work, our main focus is on users' interaction with different suites of multi-layered agentic workflows mapped in a 3D environment. Users will generate prompts based on feature requirements, navigate agent feedback and code implementations mapped as spatial nodes, and make decisions. This gives them full control over a human-centric spatial AI environment.
+
+% =============================================================================
+\section{System Vision and Technology}
+% =============================================================================
+We will code our backend system in Python using Anthropic's Claude Agents SDK and API. Each agent defined above will use the Claude model with different roles, instructions, and permissions. The user will receive a small baseline application, such as a calculator app, to implement new features into. 
+
+Instead of a flat 2D interface, the frontend will be an interactive 3D spatial user interface built using WebXR and Three.js. This environment will visualize the software repository and the agents' workflows as an interactive spatial node graph. Developer prompts, agent feedback, and code diffs will be rendered as distinct physical nodes the user can navigate between. By building on WebXR, the interface will be fully accessible via a standard laptop screen for standard development and review, while also fully supporting immersive interaction via a Meta Quest headset.
+
+% =============================================================================
+\section{Evaluation Plan}
+% =============================================================================
+The main independent variables in our experiment will be agent workflows discussed previously and feature difficulty. We will compare programmer, programmer plus reviewer, and planner plus programmer plus reviewer workflows across easy, medium, and hard feature tasks. Our primary dependent variables will focus on the human interaction with the system, including confidence in the generated solution, trust that the solution is correct, understanding of the changes made, perceived workload, and whether participants accept or reject the generated code appropriately. We will also collect system-level measurements including hidden-test pass rate, regression failures, and agent execution time. We plan to recruit around 10 participants with programming experience and some familiarity with AI development tools. Each participant will complete nine total trials using copies of the same baseline repository. This study will be conducted only as a class project and will not require an IRB submission.
+
+% =============================================================================
+\section{Deliverables}
+% =============================================================================
+By the end of November, we plan on having a project that includes three functioning agents using an underlying Claude model, a complete baseline repository built in Python for users to add features to, automated tests for implementation evaluation, and a WebXR based 3D spatial interface that supports user-written prompts, visualizes agent feedback as interactive nodes, and gathers user decisions, results, and feedback. 
+
+By the end of this class, we will complete the planned participant study and produce an analyzed dataset comparing correctness, human intervention, acceptance decisions, confidence, comprehension, workload, and execution cost between architectures.
+
+% =============================================================================
+\section{Conclusion}
+% =============================================================================
+This project examines whether AI agent workflows can improve both the overall correctness of AI-generated code and a developer's ability to supervise this code. By comparing the sequential addition of planning and review layers while keeping other system components consistent, the study will identify the benefits and trade-offs of adding more layers to agentic workflows. The class should expect to see a functioning multi-agent coding system seamlessly integrated into a spatial 3D node graph interface, along with results from a participant study comparing code correctness, developer understanding, confidence, workload, and decision-making across the different architectures.
+
+\nocite{*}
+\balance
+\bibliographystyle{acm-sigchi}
+\bibliography{Bibliography}
+
+\end{document}
+
+```
